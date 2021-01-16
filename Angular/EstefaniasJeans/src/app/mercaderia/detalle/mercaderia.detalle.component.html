@@ -1,0 +1,53 @@
+ <!-- breadcrumb start  -->
+ <app-pre-loader></app-pre-loader>
+ <app-breadcrumb titulo="Detalle"></app-breadcrumb>
+<!-- breadcrumb end  -->
+ <div class="collection-area margin-top-60">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12">
+                <div class="row" *ngIf="!cargando">
+                    <div class="col-lg-5 col-md-6">
+                        <div class="slider-tabfor margin-top-20">
+                            <app-slider [images]=mercaderiaFoto [slider]=slider>
+                            </app-slider>
+                        </div>
+                    </div>
+                    <div class="col-lg-7 col-md-6">
+                        <div class="content-part margin-top-20">
+                            <h3 class="product-title">{{mercaderia.Nombre}}</h3>
+                            <p class="price">S/. {{mercaderia.Precio | number:'1.2-2'}}</p>
+                            <p class="specifications">Disponibilidad: 
+                                <b *ngIf="mercaderia.StockRestante > 0" class="color-green">En Stock</b>
+                                <b *ngIf="mercaderia.StockRestante == 0" class="color-red">No cuenta con Stock</b>
+                            </p>
+                            <div class="btn-wrapper d-flex" *ngIf="mercaderia.StockRestante > 0">
+                                <div class="input-group">
+                                    <div class="input-group-prepend align-self-center">
+                                        <a class="btn btn-sm"(click)="restarCantidad()" id="minus-btn"><i class="fa fa-minus"></i></a>
+                                    </div>
+                                    <input id="qty_input" class="form-control text-right form-control-sm" (keydown)="keyDown($event)" (keyup)="keyUp($event)" value="{{cantidadPantalon}}">
+                                    <div class="input-group-prepend align-self-center">
+                                        <a class="btn btn-sm" (click)="aumentarCantidad()" id="plus-btn"><i class="fa fa-plus"></i></a>
+                                    </div>
+                                </div>
+                                <div class="add-to-cart" (click)="agregarAlCarrito()">
+                                    <a><i class="icon-add-to-cat"></i> Agregar al carrito</a>
+                                </div>
+                            </div>
+                            <p class="specifications" *ngIf="mercaderia.StockRestante == 0">Para saber si va a llegar este modelo comuníquese al whatsapp.</p>
+                            <div class="btn-wrapper mt-3" >
+                                <a [href]="whatsapp" target="_blank" *ngIf="mercaderia.StockRestante == 0" class="btn btn-buy btn-success">
+                                    <i class="fa fa-whatsapp"></i>
+                                    Whatsapp
+                                </a>
+                                <a [routerLink]="['/mercaderias']" *ngIf="mercaderia.StockRestante > 0" class="btn btn-dark">Continuar comprando</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- collection area end  -->

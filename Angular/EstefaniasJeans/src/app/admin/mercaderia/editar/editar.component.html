@@ -1,0 +1,110 @@
+<app-pre-loader></app-pre-loader>
+<app-breadcrumb titulo="Editar"></app-breadcrumb>
+<div class="cart-area margin-top-60">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-9">
+              <!-- <div class="alert alert-danger" *ngIf="errors.length > 0" role="alert">
+                <ul>
+                  <li *ngFor="let item of errors">{{item}}</li>
+                </ul>
+              </div> -->
+              <div class="card">
+                <div class="card-header">
+                  <h5 class="card-title m-0">Mercaderia</h5>
+                </div>
+                <div class="card-body">
+                  <form [formGroup]="formMercaderia" (submit)="guardar()">
+                    <div class="form-group row">
+                        <label class="col-md-3">Nombre: <span style="color:red">*</span></label>
+                        <div class="col-md-9">
+                            <input class="form-control" type="text" id="Nombre" formControlName="Nombre"/>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-md-3">Descripcion:</label>
+                        <div class="col-md-9">
+                            <textarea class="form-control" id="Descripcion" formControlName="Descripcion"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-md-3">Categoria: <span style="color:red">*</span></label>
+                        <div class="col-md-9">
+                           <select class="form-control" id="Id_Categoria" formControlName="Id_Categoria">
+                               <option value="-1">Seleccionar</option>
+                               <option *ngFor="let categoria of categorias" value="{{categoria.Id_Categoria}}">{{categoria.Nombre}}</option>
+                           </select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-md-3">Stock: <span style="color:red">*</span></label>
+                        <div class="col-md-9">
+                            <input class="form-control" type="text" id="Stock" formControlName="Stock"/>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-md-3">Precio: <span style="color:red">*</span></label>
+                        <div class="col-md-9">
+                            <input class="form-control" type="text" id="Precio" formControlName="Precio"/>
+                        </div>
+                    </div>
+                    <hr/>
+                    <div class="form-group row">
+                        <label class="col-md-3">Fotos: <span style="color:red">*</span></label>
+                        <div class="col-md-9">
+                            <ngx-dropzone (change)="onSelect($event)" [expandable]="true" accept="image/jpeg,image/jpg,image/png,image/gif" >
+                                <ngx-dropzone-label>Selecciona fotos!</ngx-dropzone-label>
+                                <ngx-dropzone-image-preview ngProjectAs="ngx-dropzone-preview" *ngFor="let f of files" [file]="f"  [removable]="true" (removed)="onRemove(f)">
+                                  <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+                                </ngx-dropzone-image-preview>
+                            </ngx-dropzone>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row" *ngIf="mercaderiaFoto.length > 0">
+                      <div class="col-md-12 table-responsive">
+                        <table class="table table-bordered table-hover">
+                          <thead>
+                            <tr>
+                              <th>Foto</th>
+                              <th>Nombre</th>
+                              <th>Acción</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr *ngIf="mercaderiaFoto.length == 0">
+                              <td colspan="3">
+                                No hay fotos.
+                              </td>
+                            </tr>
+                            <tr *ngFor="let item of mercaderiaFoto">
+                              <td>
+                                <img [src]="item.Nombre | image: id_Mercaderia" width="90" height="90"/>
+                              </td>
+                              <td>
+                                {{item.Nombre}}
+                              </td>
+                              <td>
+                                <a href="javascript:void(0)" class="btn btn-sm btn-danger" (click)="eliminarFoto(item.Id_MercaderiaFoto)">
+                                  <i class="fa fa-remove"></i> Eliminar
+                                </a>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-12 d-flex justify-content-between">
+                        <button type="submit" class="btn btn-info">Editar</button>
+                      </div>
+                    </div>
+                   
+                  </form>
+                </div>
+              </div>
+            </div>
+            
+          </div>
+    </div>
+  </div>

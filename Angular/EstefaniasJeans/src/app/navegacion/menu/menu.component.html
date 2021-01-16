@@ -1,0 +1,51 @@
+<div class="stoon-navbar">
+  <nav class="navbar navbar-area navbar-expand-lg nav-style-01">
+      <div class="container-fluid nav-container">
+          <div class="row">
+              <div class="col-lg-3 col-4 order-1 align-self-center">
+                  <div class="logo">
+                      <a [routerLink]="['/']">
+                        Estefanias Jeans
+                        </a>
+                  </div>
+              </div>
+              <div class="col-lg-6 order-3 order-lg-2">
+                  <div class="collapse navbar-collapse" [ngbCollapse]="isCollapsed">
+                      <ul class="navbar-nav menu-open">
+                          <li><a [routerLink]="['']" [routerLinkActiveOptions]="{exact:true}" routerLinkActive="active" class="nav-item">INICIO</a></li>
+                          <li><a [routerLink]="['mercaderias']"[routerLinkActiveOptions]="{exact:false}" routerLinkActive="active" class="nav-item">MERCADERIAS</a></li>
+                          <li *ngIf="esAdmin" class="menu-item-has-children">
+                              <a [routerLink]="['admin']" [routerLinkActiveOptions]="{exact:false}" routerLinkActive="active" class="nav-item">ADMIN </a>
+                              <ul class="sub-menu">
+                                <li><a [routerLink]="['/admin/mercaderia']" routerLinkActive="active" >Mercaderias</a></li>
+                                <li><a [routerLink]="['/admin/pedido']" routerLinkActive="active" >Pedidos</a></li>
+                            </ul>
+                          </li>
+                      </ul>
+                  </div>
+              </div>
+              <div class="col-lg-3 col-8 justify-content-end d-flex order-2 order-lg-3">
+                  <div class="nav-right-part">
+                      <ul>
+                          <li>
+                            <app-favorito-icon></app-favorito-icon>
+                          </li>
+                          <li class="has-dropdown">
+                            <app-carrito-icon></app-carrito-icon>
+                          </li>
+                          <li>
+                            <app-login-icon></app-login-icon>
+                          </li>
+                      </ul>
+                  </div>
+                  <div class=" responsive-mobile-menu">
+                      <div class="menu toggle-btn d-block d-lg-none" (click)="isCollapsed = !isCollapsed" role="button">
+                          <div class="icon-left"></div>
+                          <div class="icon-right"></div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </nav>
+</div>

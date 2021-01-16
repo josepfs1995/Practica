@@ -1,0 +1,68 @@
+ <!-- breadcrumb start  -->
+<app-pre-loader></app-pre-loader>
+<app-breadcrumb titulo="Mercaderias"></app-breadcrumb>
+<!-- breadcrumb end  -->
+<!-- collection area start  -->
+<div class="collection-area margin-top-60">
+    <div class="container">
+        <div class="row flex-row-reverse">
+            <div class="col-xl-9 col-lg-8 col-md-12 col-sm-12 col-12">
+                <div class="row">
+                    <div class="col-lg-4 col-7 offset-lg-8">
+                        <select (change)="ordenarLista($event)" class="form-control sort-select">
+                            <option selected>--Ordenar por--</option>
+                            <option value="True">Precio: menor a mayor</option>
+                            <option value="False">Precio: mayor a menor</option>
+                        </select>
+                        <i class="fa fa-chevron-down"></i>
+                    </div>
+                </div>
+                <div class="tab-content">
+                    <div class="tab-pane fade in show active">
+                        <div class="row">
+                            <div class="col-xl-4 col-lg-4 col-md-3 col-sm-6 col-12" *ngFor="let item of filtrados">
+                                <div class="product-style-03 margin-top-40">
+                                    <div class="thumb">
+                                        <a [routerLink]="['detalle/', item.Id_Mercaderia]">
+                                            <img [src]="item.MercaderiaFoto[0].Nombre | image: item.Id_Mercaderia" max-width="280" max-height="350" alt="">
+                                        </a>
+                                       <app-cart-action [mercaderia]=item></app-cart-action>
+                                    </div>
+                                    <div class="content text-center">
+                                        <span class="brand">Categoria: {{item.Categoria.Nombre}}</span>
+                                        <h6 class="title"><a [routerLink]="['detalle/', item.Id_Mercaderia]">{{item.Nombre}}</a></h6>
+                                        <div class="content-price d-flex align-self-center justify-content-center">
+                                            <span class="new-price">S/. {{item.Precio | number:'1.2-2'}}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-4 col-md-12 col-sm-12 col-12 margin-top-20">
+                <div class="widget categories-widget">
+                    <div class="accordion-style-2" id="accordionExample1">
+                        <div class="card">
+                            <div class="card-header" id="headingOne">
+                                <p class="mb-0">
+                                    <a (click)="isCollapsed = !isCollapsed" role="button" [attr.aria-expanded]=!isCollapsed>Categorias</a>
+                                </p>
+                            </div>
+                            <div class="collapse show" [(ngbCollapse)]="isCollapsed">
+                                <div class="card-body" *ngFor="let item of categorias">
+                                    <div class="custom-control custom-checkbox mb-3">
+                                        <input type="checkbox" class="custom-control-input" (change)="obtenerFiltrosCategoria();filtrar()" #chk id="chk{{item.Nombre}}" [checked]="filtrosCategoria.indexOf(item.Id_Categoria) > -1" [attr.data-categoria]="item.Id_Categoria">
+                                        <label class="custom-control-label" for="chk{{item.Nombre}}">{{item.Nombre}}</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- collection area end  -->

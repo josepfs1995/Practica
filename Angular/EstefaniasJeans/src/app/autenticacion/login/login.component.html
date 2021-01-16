@@ -1,0 +1,42 @@
+<app-pre-loader></app-pre-loader>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-10 col-lg-7">
+      <div class="alert alert-danger" *ngIf="errors.length > 0" role="alert">
+        <ul>
+          <li *ngFor="let item of errors">{{item}}</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-header">
+          <h5 class="card-title m-0">Login</h5>
+        </div>
+        <div class="card-body">
+          <form [formGroup]="loginForm">
+            <div class="form-group row">
+              <label class="col-md-3">Email: </label>
+              <div class="col-md-9">
+                <input class="form-control" type="email" id="Email" formControlName="Email" placeholder="..@...com"/>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-md-3">Contraseña: </label>
+              <div class="col-md-9">
+                <input class="form-control" type="password" id="Contrasena" autocomplete="false" formControlName="Contrasena" placeholder=""/>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12 d-flex justify-content-between">
+                <button type="button" class="btn btn-info" (click)="login()">Ingresar</button>
+                <a class="btn btn-outline-secondary" [routerLink]="['/autenticacion/registrar']" href="javascript:void(0)">Registrate</a>
+              </div>
+            </div>
+           
+          </form>
+        </div>
+      </div>
+    </div>
+    
+  </div>
+  
+</div>

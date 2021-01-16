@@ -1,0 +1,14 @@
+<div class="breadcrumb-area">
+  <div class="container">
+      <div class="row">
+          <div class="col-md-12">
+              <div class="breadcrumb-inner d-flex justify-content-between">
+                  <h2 class="page-title">{{titulo}}</h2>
+                  <ul class="page-list">
+                    <li *ngFor="let item of breadcrumb"><a [routerLink]="[item.Url]">{{item.Nombre}}</a></li>
+                  </ul>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>

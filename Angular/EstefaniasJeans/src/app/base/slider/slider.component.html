@@ -1,0 +1,12 @@
+
+<ngb-carousel *ngIf="images">
+    <ng-template ngbSlide *ngFor="let image of images">
+        <div class="picsum-img-wrapper">
+            <img *ngIf="slider" [src]="image" [attr.width]=slider.width [attr.height]=slider.height>
+            <img *ngIf="!slider" [src]="image">
+            </div>
+            <div class="carousel-caption pt-0 mb-3" *ngIf="!slider">
+                <button class="btn btn-info btn-sm">Ver detalle</button>
+            </div>
+    </ng-template>
+</ngb-carousel>

@@ -1,0 +1,33 @@
+<div class="row">
+    <div class="col-lg-4 col-md-6 col-sm-6 col-12" *ngFor="let mercaderia of mercaderias">
+        <div class="product-style-01 margin-top-40">
+            <div class="thumb">
+                <div class="thumb-slider">
+                    <a [routerLink]="['mercaderias/detalle/', mercaderia.Id_Mercaderia]" routerLinkActive="router-link-active"  *ngIf="mercaderia.MercaderiaFoto.length > 0">
+                        <img [src]="mercaderia.MercaderiaFoto[0].Nombre | image: mercaderia.Id_Mercaderia" width="350" height="425" alt="">
+                    </a>
+                </div>
+                <span class="agotado" *ngIf="mercaderia.StockRestante == 0">AGOTADO</span>
+                <app-cart-action [mercaderia]=mercaderia></app-cart-action>
+            </div>
+            <div class="content text-center">
+                <div class="content-hover d-flex justify-content-between">
+                    <ul class="product-size">
+                        <li><span>28</span></li>
+                        <li><span>30</span></li>
+                        <li><span>32</span></li>
+                        <li><span>34</span></li>
+                    </ul>
+                </div>
+                <div class="content-bottom">
+                    <span class="brand">{{mercaderia.Categoria.Nombre}}</span>
+                    <h6 class="title"><span>{{mercaderia.Nombre}}</span></h6>
+                    <div class="content-price d-flex align-self-center justify-content-center">
+                        <span class="new-price">S/. {{mercaderia.Precio | number:'1.2-2' }}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

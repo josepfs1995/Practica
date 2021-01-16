@@ -1,0 +1,26 @@
+<a><i class="icon-add-to-cat"></i>
+    <span class="badge" *ngIf="carritos.length > 0">{{carritos.length}}</span>
+</a>
+<ul *ngIf="carritos.length > 0">
+    <li *ngFor="let item of carritos">
+        <div class="d-flex">
+            <div class="thumb">
+                <img [src]="item.Images[0] | image:item.Id_Mercaderia" width="150" height="140" alt="">
+            </div>
+            <div class="content">
+                <h6 class="title"><a href="javascript:void(0)">{{item.Nombre}}</a></h6>
+                <span class="price">S/. {{item.Precio | number:'1.2-2'}}</span>
+            </div>
+            <div class="action">
+                <input type="text" readonly disabled value="{{item.Cantidad}}">
+                <a (click)="eliminarDeCarrito(item)" class="remove">Eliminar</a>
+            </div>
+        </div>
+    </li>
+    <li>
+        <h6 class="tprice"><span>Precio Total: </span>S/. {{montoTotal | number:'1.2-2'}}</h6>
+        <div class="btn-wrapper">
+            <a [routerLink]="['/carrito']" class="btn btn-cart">Ir al carrito</a>
+        </div>
+    </li>
+</ul>

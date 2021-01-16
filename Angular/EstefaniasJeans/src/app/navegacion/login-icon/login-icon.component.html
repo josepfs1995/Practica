@@ -1,0 +1,6 @@
+<a [routerLink]="['/autenticacion']" *ngIf="!logueado"><i class="icon-user"></i></a>
+<a *ngIf="logueado" href="javascript:void(0)"><i class="icon-user"></i></a>
+<ul class="user-dropdown" *ngIf="logueado">
+    <li><a href="javascript:void(0)">Bienvenido {{usuarioRespuesta.UsuarioToken.Email}}</a></li>
+    <li><a href="javascript:void(0)" (click)="salir()"> Salir</a></li>
+</ul>

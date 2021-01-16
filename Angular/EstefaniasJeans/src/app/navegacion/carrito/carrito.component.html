@@ -1,0 +1,75 @@
+<!-- breadcrumb start  -->
+<app-pre-loader></app-pre-loader>
+<app-breadcrumb titulo="Carrito de compra"></app-breadcrumb>
+<!-- breadcrumb end  -->
+
+<!-- cart area start  -->
+<div class="cart-area margin-top-60">
+    <div class="container">
+        <div class="row">
+            <div [ngClass]="{'col-xl-10 col-lg-9': carritos.length > 0, 'col-xl-12 col-lg-12': carritos.length === 0}">
+                <div class="cart-content margin-top-20">
+                    <table class="table table-bordered table-responsive">
+                        <thead>
+                          <tr class="text-center">
+                            <th scope="col">Prenda</th>
+                            <th scope="col">Precio</th>
+                            <th scope="col">Cantidad</th>
+                            <th scope="col">Total</th>
+                            <th scope="col">Eliminar</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr *ngFor="let item of carritos">
+                            <th scope="row" class="d-flex">
+                                <div class="left">
+                                    <img [src]="item.Images[0] | image: item.Id_Mercaderia" width="120" height="143" alt="">
+                                </div>
+                                <div class="right">
+                                    <h6 class="name">{{item.Nombre}}</h6>
+                                    <h6 class="title">Talla: <span class="values">XL</span></h6>
+                                </div>
+                            </th>
+                            <td>S/. {{item.Precio | number:'1.2-2'}}</td>
+                            <td><input type="text" value="{{item.Cantidad}}" (keydown)="keyDown($event)" (keyup)="keyUp($event, item)"></td>
+                            <td>S/. {{(item.Precio * item.Cantidad)| number:'1.2-2'}}</td>
+                            <td>
+                                <div class="action">
+                                    <a (click)="eliminarDeCarrito(item)"><i class="fa fa-times"></i></a>
+                                </div>
+                            </td>
+                          </tr>
+                          <tr *ngIf="carritos.length == 0">
+                            <td colspan="5">No hay prendas en el carrito.</td>   
+                          </tr>
+                        </tbody>
+                    </table>
+                    <div class="d-flex justify-content-between margin-top-30">
+                        <div class="btn-wrapper">
+                            <a [routerLink]="['/mercaderias']" class="btn btn-continue">Continuar comprando</a>
+                        </div>
+                        <div class="btn-wrapper" *ngIf="carritos.length > 0">
+                            <a class="btn btn-clear" (click)="limpiarCarrito()">Limpiar carrito</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-2 col-lg-3" *ngIf="carritos.length > 0">
+                <div class="summary margin-top-20">
+                    <h6 class="title">Total</h6>
+                    <div class="d-flex justify-content-between total">
+                        <p>Total</p>
+                        <p>S/. {{ this.precioTotal | number:'1.2-2'}}</p>
+                    </div>
+                    <div class="btn-wrapper">
+                        <a href="javascript:void(0)" [routerLink]="['/autenticacion']" *ngIf="!estaConectado" class="btn btn-checkout"> Conectarme</a>
+                        <a href="javascript:void(0)" (click)="generarPedido()" *ngIf="estaConectado" class="btn btn-checkout"><span class="fa fa-whatsapp"></span> Whatsapp</a>
+                       
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- cart area end  -->
+<app-collection></app-collection>

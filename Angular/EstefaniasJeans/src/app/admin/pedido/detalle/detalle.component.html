@@ -1,0 +1,84 @@
+<app-pre-loader></app-pre-loader>
+<app-breadcrumb titulo="Pedidos"></app-breadcrumb>
+<!-- cart area start  -->
+<div class="cart-area margin-top-60" *ngIf="!cargando">
+  <div class="container">
+    <div class="row" *ngIf="tieneError" >
+      <div class="col-xl-12 col-lg-12">
+        <div class="alert alert-danger" *ngIf="errors.length > 0" role="alert">
+          <ul>
+            <li *ngFor="let item of errors">{{item}}</li>
+          </ul>
+        </div>
+      
+      </div>
+  </div>
+      <div class="row" *ngIf="!tieneError" >
+          <div class="col-xl-4 col-lg-4 col-md-4">
+            <div class="form-group">
+              <label>Persona:</label>
+              <input class="form-control" type="text" disabled value="{{pedido.Persona.Nombres + ' ' + pedido.Persona.Apellidos}}">
+            </div>
+          </div>
+          <div class="col-xl-4 col-lg-4 col-md-4">
+            <div class="form-group">
+              <label>Celular:</label>
+              <input class="form-control" type="text" disabled value="{{pedido.Persona.Celular}}">
+            </div>
+          </div>
+          <div class="col-xl-4 col-lg-4 col-md-4">
+            <div class="form-group">
+              <label>Dirección:</label>
+              <input class="form-control" type="text" disabled value="{{pedido.Persona.Direccion1}}">
+            </div>
+          </div>
+          <div class="col-xl-10 col-lg-9 col-md-12">
+              <div class="cart-content margin-top-20">
+                  <table class="table table-bordered table-responsive">
+                      <thead>
+                        <tr class="text-center">
+                          <th scope="col">Prenda</th>
+                          <th scope="col">Precio</th>
+                          <th scope="col">Cantidad</th>
+                          <th scope="col">Total</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr *ngFor="let item of pedido.PedidoDetalle">
+                          <th scope="row" class="d-flex">
+                              <div class="left">
+                                  <img [src]="item.Mercaderia.MercaderiaFoto[0].Nombre | image: item.Mercaderia.Id_Mercaderia" width="120" height="143" alt="">
+                              </div>
+                              <div class="right">
+                                  <h6 class="name">{{item.Mercaderia.Nombre}}</h6>
+                                  <h6 class="title">Talla: <span class="values">XL</span></h6>
+                              </div>
+                          </th>
+                          <td>S/. {{item.Precio | number:'1.2-2'}}</td>
+                          <td><input type="text" value="{{item.Cantidad}}" disabled></td>
+                          <td>S/. {{(item.Precio * item.Cantidad)| number:'1.2-2'}}</td>
+                       
+                        </tr>
+                        <tr *ngIf="pedido.PedidoDetalle.length == 0">
+                          <td colspan="5">No hay prendas en el pedido.</td>   
+                        </tr>
+                      </tbody>
+                  </table>
+              </div>
+          </div>
+          <div class="col-xl-2 col-lg-3" *ngIf="pedido.PedidoDetalle.length > 0">
+              <div class="summary margin-top-20">
+                  <h6 class="title">Total</h6>
+                  <div class="d-flex justify-content-between total">
+                    <p>Prendas</p>
+                    <p>{{ cantidadTotal }}</p>
+                  </div>
+                  <div class="d-flex justify-content-between total">
+                      <p>Precio</p>
+                      <p>S/. {{ pedido.PrecioTotal | number:'1.2-2'}}</p>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>

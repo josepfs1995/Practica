@@ -1,0 +1,55 @@
+<app-pre-loader></app-pre-loader>
+<app-breadcrumb titulo="Mercaderia"></app-breadcrumb>
+<div class="cart-area margin-top-60">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 mb-3 d-flex justify-content-end">
+            <a class="btn btn-info" [routerLink]="['crear']" href="javascript:void(0)" ><i class="fa fa-plus"></i> Crear </a>
+        </div>
+        <div class="col-md-12">
+          <div class="table-responsive">
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th scope="col">Foto</th>
+                  <th scope="col">Mercaderia</th>
+                  <th scope="col">Precio</th>
+                  <th scope="col">Stock</th>
+                  <th scope="col">Categoria</th>
+                  <th scope="col">Estado</th>
+                  <th scope="col">Acción</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let mercaderia of mercaderias">
+                  <td>
+                    <img [src]="mercaderia.MercaderiaFoto[0].Nombre | image: mercaderia.Id_Mercaderia" width="220" height="200"/>
+                  </td>
+                  <td>{{mercaderia.Nombre}}</td>
+                  <td>S/. {{mercaderia.Precio | number:'1.2-2'}}</td>
+                  <td>{{mercaderia.Stock}}</td>
+                  <td>{{mercaderia.Categoria.Nombre}}</td>
+                  <td>
+                    <span *ngIf="!mercaderia.Estado" class="badge badge-danger"> Eliminado</span>
+                    <span *ngIf="mercaderia.Estado" class="badge badge-success"> Activo</span>
+                  </td>
+                  <td>
+                    <a href="javascript:void(0)" class="btn btn-sm btn-secondary" [routerLink]="['editar', mercaderia.Id_Mercaderia]">
+                      <span class="fa fa-edit"></span> Editar
+                    </a>&nbsp;
+                    <a href="javascript:void(0)" *ngIf="mercaderia.Estado" class="btn btn-sm btn-danger" (click)="eliminarResultado(mercaderia.Id_Mercaderia)">
+                      <span class="fa fa-remove"></span> Eliminar
+                    </a>&nbsp;
+                    <a href="javascript:void(0)" *ngIf="!mercaderia.Estado" class="btn btn-sm btn-warning" (click)="eliminarResultado(mercaderia.Id_Mercaderia)">
+                      <span class="fa fa-check"></span> Activar
+                    </a>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        
+        </div>
+      </div>
+    </div>
+  </div>

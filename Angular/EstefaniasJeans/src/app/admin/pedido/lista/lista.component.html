@@ -1,0 +1,35 @@
+<app-pre-loader></app-pre-loader>
+<app-breadcrumb titulo="Pedidos"></app-breadcrumb>
+<div class="cart-area margin-top-60">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="table-responsive">
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Persona</th>
+                <th scope="col">Precio Total</th>
+                <th scope="col">Fecha</th>
+                <th scope="col">Acción</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of pedidos; let indice = index">
+                <td scope="row">{{indice + 1}}</td>
+                <td>{{item.Persona.Nombres + " " + item.Persona.Apellidos}}</td>
+                <td>S/. {{item.PrecioTotal}}</td>
+                <td>{{item.Fecha | date: 'dd/MM/yyyy' }}</td>
+                <td>
+                  <a [routerLink]="['detalle/', item.Id_Pedido]" routerLinkActive="router-link-active"  >Ver</a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      
+      </div>
+    </div>
+  </div>
+</div>
