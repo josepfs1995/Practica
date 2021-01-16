@@ -28,4 +28,6 @@ IdentityServer\
 JWT\
 Angular\
 NgBootstrap\
-Ngx-dropzone\
+Ngx-dropzone
+
+
