@@ -16,16 +16,16 @@ dotnet ef database update --context EstefaniasJeansContext
 dotnet ef database update --context  EstefaniasJeansIdentityContext
 ```
 ## Tecnologias
-.Net Core 5.0 Web API
-EntityFramework Core
-Swagger
-CQRS 
-Mediator
-Automapper
-FluentValidation
-DI
-IdentityServer
-JWT
-Angular
-NgBootstrap
-Ngx-dropzone
+.Net Core 5.0 Web API\
+EntityFramework Core\
+Swagger\
+CQRS \
+Mediator\
+Automapper\
+FluentValidation\
+DI\
+IdentityServer\
+JWT\
+Angular\
+NgBootstrap\
+Ngx-dropzone\
